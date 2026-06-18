@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maze Bar HK — Find Your Way</title>
+<meta name="description" content="Maze Bar Hong Kong. A futuristic Aztec cocktail bar on Knutsford Terrace, Tsim Sha Tsui. Reserve your table now.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: #0D0A07;
+  color: #E8E0D0;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── TOKENS ────────────────────────────────────────────── */
+:root {
+  --void:      #0D0A07;
+  --obsidian:  #1A1410;
+  --earth:     #2E2418;
+  --gold:      #C9A84C;
+  --bone:      #E8E0D0;
+  --muted:     #7A6E5F;
+  --dim:       #4A4038;
+  --campari:   #7D2B4E;
+  --absinthe:  #1A4A3C;
+  --rule:      1px solid rgba(201,168,76,0.18);
+}
+
+/* ─── NOISE TEXTURE (SVG-inline background) ─────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── NAV ───────────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 48px;
+  background: linear-gradient(to bottom, rgba(13,10,7,0.9) 0%, transparent 100%);
+  transition: background 0.4s;
+}
+nav.scrolled {
+  background: rgba(13,10,7,0.95);
+  border-bottom: var(--rule);
+  padding: 16px 48px;
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.12em;
+  color: var(--bone);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.nav-logo-mark {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--void) !important;
+  background: var(--gold);
+  padding: 10px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.nav-cta:hover { opacity: 0.88; }
+
+/* ─── HERO — CONCEPT C EDITORIAL SPLIT ─────────────────── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  position: relative;
+  z-index: 1;
+}
+
+/* LEFT — photo column */
+.hero-image {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+.hero-image-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, transparent 65%, var(--void) 100%),
+    linear-gradient(to bottom, rgba(13,10,7,0.3) 0%, transparent 40%);
+  z-index: 2;
+}
+/* Abstract cocktail / bar illustration standing in for photography */
+.hero-photo-art {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+.hero-image-label {
+  position: absolute;
+  bottom: 48px;
+  left: 48px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-image-label span {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hero-image-label-line {
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.6;
+}
+
+/* RIGHT — editorial text column */
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 64px 80px 56px;
+  position: relative;
+  z-index: 3;
+}
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.hero-eyebrow-line {
+  width: 24px;
+  height: 1.5px;
+  background: var(--gold);
+}
+.hero-eyebrow span {
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.hero-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 6vw, 96px);
+  letter-spacing: 0.04em;
+  line-height: 0.92;
+  color: var(--bone);
+  margin-bottom: 28px;
+}
+.hero-headline em {
+  font-style: normal;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,168,76,0.5);
+}
+.hero-subhead {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 2vw, 26px);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+  margin-bottom: 16px;
+  max-width: 380px;
+}
+.hero-body {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  max-width: 360px;
+  margin-bottom: 44px;
+}
+.hero-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 320px;
+  margin-bottom: 52px;
+}
+.btn-primary {
+  display: block;
+  text-align: center;
+  background: var(--gold);
+  color: var(--void);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 18px 32px;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-ghost {
+  display: block;
+  text-align: center;
+  background: transparent;
+  color: var(--bone);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 17px 32px;
+  border-radius: 3px;
+  border: 1px solid rgba(232,224,208,0.2);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+.hero-meta {
+  display: flex;
+  gap: 28px;
+  padding-top: 40px;
+  border-top: var(--rule);
+}
+.hero-meta-item {}
+.hero-meta-label {
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 4px;
+}
+.hero-meta-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+/* ─── SECTION WRAPPER ───────────────────────────────────── */
+section {
+  position: relative;
+  z-index: 1;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* ─── MARQUEE STRIP ─────────────────────────────────────── */
+.marquee-strip {
+  overflow: hidden;
+  border-top: var(--rule);
+  border-bottom: var(--rule);
+  padding: 14px 0;
+  background: var(--obsidian);
+}
+.marquee-track {
+  display: flex;
+  gap: 0;
+  animation: marquee 28s linear infinite;
+  width: max-content;
+}
+.marquee-track span {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--dim);
+  white-space: nowrap;
+  padding: 0 32px;
+}
+.marquee-track span.gold { color: var(--gold); }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+/* ─── MENU HIGHLIGHTS ───────────────────────────────────── */
+.menu-section {
+  padding: 120px 0;
+}
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 64px;
+}
+.section-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 56px;
+  letter-spacing: 0.04em;
+  color: var(--bone);
+  line-height: 0.92;
+}
+.section-link {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.2s;
+  padding-bottom: 4px;
+}
+.section-link::after {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s;
+}
+.section-link:hover { color: var(--gold); }
+.section-link:hover::after { width: 36px; }
+
+.cocktail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+.cocktail-card {
+  background: var(--obsidian);
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: background 0.3s;
+}
+.cocktail-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+.cocktail-card:hover { background: #1E1810; }
+.cocktail-card:hover::before { transform: scaleX(1); }
+.cocktail-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 64px;
+  font-weight: 300;
+  color: rgba(201,168,76,0.12);
+  line-height: 1;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+.cocktail-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.06em;
+  color: var(--bone);
+  margin-bottom: 10px;
+  line-height: 1;
+}
+.cocktail-ingredients {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 24px;
+  line-height: 1.8;
+}
+.cocktail-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 24px;
+  border-top: 1px solid rgba(46,36,24,0.8);
+}
+.cocktail-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+}
+.cocktail-tag {
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  background: var(--earth);
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+/* ─── ATMOSPHERE SPLIT ──────────────────────────────────── */
+.atmosphere-section {
+  padding: 120px 0;
+  border-top: var(--rule);
+}
+.atmosphere-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.atmosphere-visual {
+  position: relative;
+  aspect-ratio: 4/5;
+  background: var(--obsidian);
+  border: var(--rule);
+  overflow: hidden;
+}
+.atmosphere-visual-inner {
+  position: absolute;
+  inset: 0;
+}
+.atmosphere-quote {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  right: 40px;
+  z-index: 2;
+}
+.atmosphere-quote blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--bone);
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+}
+.atmosphere-quote cite {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-style: normal;
+}
+.atmosphere-text {}
+.atmosphere-text .section-eyebrow { margin-bottom: 20px; }
+.atmosphere-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 64px;
+  letter-spacing: 0.04em;
+  color: var(--bone);
+  line-height: 0.92;
+  margin-bottom: 32px;
+}
+.atmosphere-body {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+  margin-bottom: 40px;
+  max-width: 420px;
+}
+.atmosphere-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.stat-item {
+  padding: 20px 0;
+  border-top: var(--rule);
+}
+.stat-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+/* ─── RESERVATION SECTION ───────────────────────────────── */
+.reserve-section {
+  padding: 140px 0;
+  border-top: var(--rule);
+}
+.reserve-grid {
+  display: grid;
+  grid-template-columns: 45fr 55fr;
+  gap: 80px;
+  align-items: start;
+}
+.reserve-text .section-title {
+  margin-bottom: 24px;
+}
+.reserve-body {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 36px;
+  max-width: 380px;
+}
+.reserve-info {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.reserve-info-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.reserve-info-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--obsidian);
+  border: var(--rule);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.reserve-info-icon svg { width: 14px; height: 14px; stroke: var(--gold); }
+.reserve-info-text {}
+.reserve-info-label {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 3px;
+}
+.reserve-info-value {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* ─── FORM ──────────────────────────────────────────────── */
+.reserve-form {
+  background: var(--obsidian);
+  border: var(--rule);
+  border-radius: 4px;
+  padding: 48px;
+}
+.form-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--bone);
+  margin-bottom: 32px;
+  letter-spacing: 0.03em;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.form-group.full { grid-column: 1 / -1; }
+.form-label {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.form-input,
+.form-select,
+.form-textarea {
+  background: var(--void);
+  border: 1px solid var(--earth);
+  border-radius: 3px;
+  color: var(--bone);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 14px 16px;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.form-input::placeholder { color: var(--dim); }
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus { border-color: var(--gold); }
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6' fill='none' stroke='%234A4038' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+.form-select option { background: var(--obsidian); }
+.form-textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+.form-submit {
+  width: 100%;
+  background: var(--gold);
+  color: var(--void);
+  border: none;
+  border-radius: 3px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 18px 32px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.form-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+.form-note {
+  font-size: 10px;
+  color: var(--dim);
+  text-align: center;
+  margin-top: 12px;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+
+/* ─── FOOTER ────────────────────────────────────────────── */
+footer {
+  border-top: var(--rule);
+  padding: 64px 0 40px;
+  position: relative;
+  z-index: 1;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+.footer-brand {}
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  color: var(--bone);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+.footer-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+.footer-social a {
+  width: 36px;
+  height: 36px;
+  background: var(--obsidian);
+  border: var(--rule);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.footer-social a:hover { border-color: var(--gold); }
+.footer-social a svg { width: 14px; height: 14px; stroke: var(--muted); transition: stroke 0.2s; }
+.footer-social a:hover svg { stroke: var(--gold); }
+.footer-col-title {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a {
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 300;
+  transition: color 0.2s;
+}
+.footer-col ul li a:hover { color: var(--bone); }
+.footer-col p {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.7;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 32px;
+  border-top: var(--rule);
+}
+.footer-bottom p {
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 0.08em;
+}
+
+/* ─── SCROLL REVEAL ─────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ─── MOBILE ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  nav { padding: 20px 24px; }
+  nav.scrolled { padding: 14px 24px; }
+  .nav-links { display: none; }
+
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-image { min-height: 55vh; }
+  .hero-image-label { bottom: 24px; left: 24px; }
+  .hero-text { padding: 56px 24px 72px; }
+  .hero-meta { flex-wrap: wrap; gap: 20px; }
+
+  .container { padding: 0 24px; }
+
+  .cocktail-grid { grid-template-columns: 1fr; gap: 2px; }
+  .atmosphere-grid { grid-template-columns: 1fr; gap: 48px; }
+  .reserve-grid { grid-template-columns: 1fr; gap: 48px; }
+  .reserve-form { padding: 32px 24px; }
+  .form-grid { grid-template-columns: 1fr; }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+
+  .section-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .atmosphere-headline { font-size: 48px; }
+}
+
+@media (max-width: 600px) {
+  .hero-headline { font-size: 48px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .atmosphere-stats { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────────────────────── -->
+<nav id="nav">
+  <a href="#" class="nav-logo" aria-label="Maze Bar HK home">
+    <svg class="nav-logo-mark" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <polygon points="14,2 24,7.5 24,20.5 14,26 4,20.5 4,7.5" stroke="#C9A84C" stroke-width="1.2" fill="none"/>
+      <polygon points="14,7 20,10.5 20,17.5 14,21 8,17.5 8,10.5" stroke="#C9A84C" stroke-width="0.5" fill="none" opacity="0.45"/>
+      <polyline points="8,14 14,14 14,17.5 20,17.5" stroke="#C9A84C" stroke-width="1" fill="none" stroke-linecap="round"/>
+    </svg>
+    MAZE BAR
+  </a>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#atmosphere">The Bar</a></li>
+    <li><a href="#reserve" class="nav-cta">Reserve a Table</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────────────────────── -->
+<main>
+<section class="hero" aria-label="Hero — Maze Bar reservation landing">
+
+  <!-- LEFT: photo/art column -->
+  <div class="hero-image" aria-hidden="true">
+    <svg class="hero-photo-art" viewBox="0 0 660 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- Deep background -->
+      <rect width="660" height="900" fill="#0D0A07"/>
+      <!-- Warm amber atmospheric glow from practical light source -->
+      <ellipse cx="330" cy="500" rx="280" ry="320" fill="#C9A84C" opacity="0.04"/>
+      <ellipse cx="200" cy="360" rx="150" ry="180" fill="#C9A84C" opacity="0.06"/>
+      <!-- Stone texture suggestion — vertical lines -->
+      <line x1="80"  y1="0" x2="80"  y2="900" stroke="#1A1410" stroke-width="0.4"/>
+      <line x1="160" y1="0" x2="160" y2="900" stroke="#1A1410" stroke-width="0.4"/>
+      <line x1="240" y1="0" x2="240" y2="900" stroke="#1A1410" stroke-width="0.4"/>
+      <line x1="320" y1="0" x2="320" y2="900" stroke="#1A1410" stroke-width="0.4"/>
+      <line x1="400" y1="0" x2="400" y2="900" stroke="#1A1410" stroke-width="0.4"/>
+      <line x1="480" y1="0" x2="480" y2="900" stroke="#1A1410" stroke-width="0.4"/>
+      <line x1="560" y1="0" x2="560" y2="900" stroke="#1A1410" stroke-width="0.4"/>
+      <!-- Aztec labyrinth geometry — large -->
+      <polygon points="330,80 510,180 510,380 330,480 150,380 150,180" fill="none" stroke="#C9A84C" stroke-width="0.7" opacity="0.22"/>
+      <polygon points="330,120 480,204 480,356 330,440 180,356 180,204" fill="none" stroke="#C9A84C" stroke-width="0.4" opacity="0.12"/>
+      <!-- Maze path running through hex -->
+      <polyline points="180,280 250,280 250,204 330,204" stroke="#C9A84C" stroke-width="0.7" fill="none" opacity="0.35" stroke-linecap="round"/>
+      <polyline points="330,356 330,300 410,300 410,356 480,356" stroke="#C9A84C" stroke-width="0.7" fill="none" opacity="0.25" stroke-linecap="round"/>
+      <!-- Cocktail glass — centred, tall stem -->
+      <polygon points="330,180 390,340 270,340" fill="none" stroke="#C9A84C" stroke-width="1" opacity="0.55"/>
+      <line x1="330" y1="340" x2="330" y2="420" stroke="#C9A84C" stroke-width="1" opacity="0.5"/>
+      <line x1="290" y1="420" x2="370" y2="420" stroke="#C9A84C" stroke-width="1" opacity="0.45"/>
+      <!-- Liquid level in glass — amber -->
+      <polygon points="330,250 381,330 279,330" fill="#C9A84C" opacity="0.08"/>
+      <line x1="285" y1="300" x2="375" y2="300" stroke="#C9A84C" stroke-width="0.5" opacity="0.35"/>
+      <!-- Ice cube suggestion -->
+      <rect x="316" y="260" width="28" height="28" fill="none" stroke="#C9A84C" stroke-width="0.6" opacity="0.3" rx="1"/>
+      <!-- Rim garnish dot -->
+      <circle cx="388" cy="342" r="4" fill="#C9A84C" opacity="0.4"/>
+      <!-- Condensation dots on glass -->
+      <circle cx="300" cy="290" r="1.2" fill="#C9A84C" opacity="0.2"/>
+      <circle cx="358" cy="310" r="0.8" fill="#C9A84C" opacity="0.15"/>
+      <circle cx="280" cy="320" r="1" fill="#C9A84C" opacity="0.18"/>
+      <!-- Bottom of frame: bar surface suggestion -->
+      <rect x="0" y="600" width="660" height="300" fill="#0D0A07" opacity="0.6"/>
+      <rect x="0" y="600" width="660" height="1" fill="#2E2418" opacity="0.8"/>
+      <!-- bar surface reflections -->
+      <ellipse cx="330" cy="640" rx="180" ry="12" fill="#C9A84C" opacity="0.03"/>
+      <!-- Small maze marks — lower portion decorative -->
+      <rect x="60"  y="680" width="40" height="40" fill="none" stroke="#2E2418" stroke-width="0.5"/>
+      <rect x="560" y="700" width="40" height="40" fill="none" stroke="#2E2418" stroke-width="0.5"/>
+      <line x1="60"  y1="700" x2="80"  y2="700" stroke="#2E2418" stroke-width="0.5"/>
+      <line x1="580" y1="720" x2="580" y2="740" stroke="#2E2418" stroke-width="0.5"/>
+      <!-- Right edge fade to void for editorial split -->
+      <rect x="420" y="0" width="240" height="900" fill="url(#fadeRight)"/>
+      <defs>
+        <linearGradient id="fadeRight" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#0D0A07" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#0D0A07" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="hero-image-bg"></div>
+    <div class="hero-image-label">
+      <div class="hero-image-label-line"></div>
+      <span>Knutsford Terrace, Tsim Sha Tsui</span>
+    </div>
+  </div>
+
+  <!-- RIGHT: editorial text -->
+  <div class="hero-text">
+    <div class="hero-eyebrow reveal">
+      <div class="hero-eyebrow-line"></div>
+      <span>Hong Kong's Most Talked-About Bar</span>
+    </div>
+
+    <h1 class="hero-headline reveal reveal-delay-1">
+      FIND<br>YOUR<br><em>WAY</em>
+    </h1>
+
+    <p class="hero-subhead reveal reveal-delay-2">
+      Where Aztec ritual meets Hong Kong nightlife.
+    </p>
+
+    <p class="hero-body reveal reveal-delay-2">
+      A futuristic labyrinth hidden on Knutsford Terrace. Every corridor is a choice. Every cocktail, a discovery. Maze Bar is not just where you end up — it's how you get there.
+    </p>
+
+    <div class="hero-ctas reveal reveal-delay-3">
+      <a href="#reserve" class="btn-primary">Reserve a Table</a>
+      <a href="#menu" class="btn-ghost">View the Menu</a>
+    </div>
+
+    <div class="hero-meta reveal reveal-delay-4">
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Hours</div>
+        <div class="hero-meta-value">Mon–Sun, 6PM–3AM</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Location</div>
+        <div class="hero-meta-value">Knutsford Terrace, TST</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Instagram</div>
+        <div class="hero-meta-value">@mazebar.hk</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ─── MARQUEE ───────────────────────────────────────────── -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Signature Cocktails</span><span class="gold">·</span>
+    <span>Futuristic Aztec</span><span class="gold">·</span>
+    <span>Knutsford Terrace</span><span class="gold">·</span>
+    <span>Tsim Sha Tsui</span><span class="gold">·</span>
+    <span>Monday to Sunday</span><span class="gold">·</span>
+    <span>6PM — 3AM</span><span class="gold">·</span>
+    <span>Find Your Way</span><span class="gold">·</span>
+    <span>Maze Bar HK</span><span class="gold">·</span>
+    <!-- duplicate for seamless loop -->
+    <span>Signature Cocktails</span><span class="gold">·</span>
+    <span>Futuristic Aztec</span><span class="gold">·</span>
+    <span>Knutsford Terrace</span><span class="gold">·</span>
+    <span>Tsim Sha Tsui</span><span class="gold">·</span>
+    <span>Monday to Sunday</span><span class="gold">·</span>
+    <span>6PM — 3AM</span><span class="gold">·</span>
+    <span>Find Your Way</span><span class="gold">·</span>
+    <span>Maze Bar HK</span><span class="gold">·</span>
+  </div>
+</div>
+
+<!-- ─── MENU SECTION ─────────────────────────────────────── -->
+<section class="menu-section" id="menu">
+  <div class="container">
+    <div class="section-header">
+      <div class="reveal">
+        <div class="section-eyebrow">Signature Cocktails</div>
+        <h2 class="section-title">THE POUR LIST</h2>
+      </div>
+      <a href="#reserve" class="section-link reveal">Full menu at the bar</a>
+    </div>
+
+    <div class="cocktail-grid">
+
+      <div class="cocktail-card reveal">
+        <div class="cocktail-number">01</div>
+        <div class="cocktail-name">The Obsidian Negroni</div>
+        <div class="cocktail-ingredients">
+          Joven Mezcal<br>
+          Vermouth Rosso<br>
+          Aztec Chocolate Bitters<br>
+          Activated Charcoal Ice
+        </div>
+        <div class="cocktail-footer">
+          <div class="cocktail-price">$128</div>
+          <div class="cocktail-tag">Signature</div>
+        </div>
+      </div>
+
+      <div class="cocktail-card reveal reveal-delay-1">
+        <div class="cocktail-number">02</div>
+        <div class="cocktail-name">Lost in Oaxaca</div>
+        <div class="cocktail-ingredients">
+          Del Maguey Vida<br>
+          Amaro Nonino<br>
+          Mole Syrup<br>
+          Orange Zest Spray
+        </div>
+        <div class="cocktail-footer">
+          <div class="cocktail-price">$138</div>
+          <div class="cocktail-tag">Mezcal Forward</div>
+        </div>
+      </div>
+
+      <div class="cocktail-card reveal reveal-delay-2">
+        <div class="cocktail-number">03</div>
+        <div class="cocktail-name">The Dead End</div>
+        <div class="cocktail-ingredients">
+          Aged Rum<br>
+          Falernum<br>
+          Pineapple Oleo<br>
+          Smoked Salt Rim
+        </div>
+        <div class="cocktail-footer">
+          <div class="cocktail-price">$118</div>
+          <div class="cocktail-tag">New</div>
+        </div>
+      </div>
+
+      <div class="cocktail-card reveal">
+        <div class="cocktail-number">04</div>
+        <div class="cocktail-name">Nocturnal Garden</div>
+        <div class="cocktail-ingredients">
+          Hendrick's Gin<br>
+          Green Chartreuse<br>
+          Cucumber Water<br>
+          Dill &amp; Black Pepper
+        </div>
+        <div class="cocktail-footer">
+          <div class="cocktail-price">$128</div>
+          <div class="cocktail-tag">Botanical</div>
+        </div>
+      </div>
+
+      <div class="cocktail-card reveal reveal-delay-1">
+        <div class="cocktail-number">05</div>
+        <div class="cocktail-name">Corridor 7</div>
+        <div class="cocktail-ingredients">
+          Islay Whisky<br>
+          Honey Peat Syrup<br>
+          Lemon Verbena<br>
+          Absinthe Rinse
+        </div>
+        <div class="cocktail-footer">
+          <div class="cocktail-price">$148</div>
+          <div class="cocktail-tag">Whisky</div>
+        </div>
+      </div>
+
+      <div class="cocktail-card reveal reveal-delay-2">
+        <div class="cocktail-number">06</div>
+        <div class="cocktail-name">The Exit (NA)</div>
+        <div class="cocktail-ingredients">
+          Verjuice<br>
+          Yuzu Shrub<br>
+          Ginger Beer<br>
+          Activated Charcoal Foam
+        </div>
+        <div class="cocktail-footer">
+          <div class="cocktail-price">$68</div>
+          <div class="cocktail-tag">Non-Alcoholic</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── ATMOSPHERE ───────────────────────────────────────── -->
+<section class="atmosphere-section" id="atmosphere">
+  <div class="container">
+    <div class="atmosphere-grid">
+
+      <div class="atmosphere-visual reveal" aria-label="Maze Bar interior — Aztec geometry, amber light">
+        <svg class="atmosphere-visual-inner" viewBox="0 0 500 625" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="500" height="625" fill="#0D0A07"/>
+          <!-- Ambient warm light source — upper left -->
+          <ellipse cx="140" cy="160" rx="200" ry="180" fill="#C9A84C" opacity="0.07"/>
+          <!-- Aztec wall pattern  -->
+          <rect x="20"  y="20"  width="460" height="585" fill="none" stroke="#1A1410" stroke-width="1"/>
+          <rect x="40"  y="40"  width="420" height="545" fill="none" stroke="#2E2418" stroke-width="0.5"/>
+          <!-- Geometric maze grid -->
+          <line x1="40"  y1="120" x2="460" y2="120" stroke="#1A1410" stroke-width="0.5"/>
+          <line x1="40"  y1="220" x2="460" y2="220" stroke="#1A1410" stroke-width="0.5"/>
+          <line x1="160" y1="40"  x2="160" y2="585" stroke="#1A1410" stroke-width="0.5"/>
+          <line x1="340" y1="40"  x2="340" y2="585" stroke="#1A1410" stroke-width="0.5"/>
+          <!-- Large central Aztec hexagon frame -->
+          <polygon points="250,60 400,143 400,383 250,466 100,383 100,143" fill="none" stroke="#C9A84C" stroke-width="1" opacity="0.3"/>
+          <polygon points="250,90 374,162 374,362 250,434 126,362 126,162" fill="none" stroke="#C9A84C" stroke-width="0.5" opacity="0.15"/>
+          <!-- Interior bar counter — perspective lines -->
+          <polygon points="60,580 440,580 400,360 100,360" fill="#1A1410" stroke="#2E2418" stroke-width="0.5"/>
+          <!-- Bar top surface line -->
+          <line x1="100" y1="360" x2="400" y2="360" stroke="#C9A84C" stroke-width="0.8" opacity="0.6"/>
+          <!-- Bottles on bar (silhouettes) -->
+          <rect x="150" y="290" width="12" height="70" fill="#C9A84C" opacity="0.12" rx="2"/>
+          <rect x="170" y="300" width="10" height="60" fill="#C9A84C" opacity="0.1" rx="2"/>
+          <rect x="188" y="285" width="14" height="75" fill="#C9A84C" opacity="0.15" rx="2"/>
+          <rect x="320" y="295" width="12" height="65" fill="#C9A84C" opacity="0.12" rx="2"/>
+          <rect x="336" y="288" width="10" height="72" fill="#C9A84C" opacity="0.1" rx="2"/>
+          <!-- Candle practical lights -->
+          <ellipse cx="220" cy="360" rx="6" ry="3" fill="#C9A84C" opacity="0.3"/>
+          <ellipse cx="280" cy="360" rx="6" ry="3" fill="#C9A84C" opacity="0.3"/>
+          <polygon points="220,350 222,360 218,360" fill="#C9A84C" opacity="0.5"/>
+          <polygon points="280,350 282,360 278,360" fill="#C9A84C" opacity="0.5"/>
+          <!-- Ceiling maze pattern -->
+          <line x1="40"  y1="40"  x2="460" y2="40"  stroke="#2E2418" stroke-width="0.3"/>
+          <line x1="100" y1="40"  x2="100" y2="120" stroke="#2E2418" stroke-width="0.3"/>
+          <line x1="400" y1="40"  x2="400" y2="120" stroke="#2E2418" stroke-width="0.3"/>
+          <line x1="200" y1="40"  x2="200" y2="80"  stroke="#2E2418" stroke-width="0.3"/>
+          <line x1="300" y1="40"  x2="300" y2="80"  stroke="#2E2418" stroke-width="0.3"/>
+          <!-- Atmospheric overlay bottom -->
+          <rect x="0" y="460" width="500" height="165" fill="url(#atmFade)"/>
+          <defs>
+            <linearGradient id="atmFade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0D0A07" stop-opacity="0"/>
+              <stop offset="100%" stop-color="#0D0A07" stop-opacity="0.85"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="atmosphere-quote">
+          <blockquote>"A bar that rewards the curious. Every turn, a new dimension."</blockquote>
+          <cite>— Time Out Hong Kong</cite>
+        </div>
+      </div>
+
+      <div class="atmosphere-text">
+        <div class="section-eyebrow reveal">The Bar</div>
+        <h2 class="atmosphere-headline reveal reveal-delay-1">WHERE<br>THE MAZE<br>BEGINS</h2>
+        <p class="atmosphere-body reveal reveal-delay-2">
+          Designed as a living labyrinth, Maze Bar plays with the architecture of mystery. Aztec geometry meets futurist material — obsidian stone, hammered brass, and corridors that don't reveal themselves all at once. Come in curious. Leave changed.
+        </p>
+        <div class="atmosphere-stats reveal reveal-delay-2">
+          <div class="stat-item">
+            <div class="stat-number">60+</div>
+            <div class="stat-label">Spirits on the shelf</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">14</div>
+            <div class="stat-label">Signature cocktails</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">9PM</div>
+            <div class="stat-label">Peak hour ritual</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">3AM</div>
+            <div class="stat-label">Last call</div>
+          </div>
+        </div>
+        <a href="#reserve" class="btn-primary reveal reveal-delay-3" style="display:inline-block;text-decoration:none;max-width:280px">Find Your Table</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── RESERVATION ──────────────────────────────────────── -->
+<section class="reserve-section" id="reserve">
+  <div class="container">
+    <div class="reserve-grid">
+
+      <div class="reserve-text">
+        <div class="section-eyebrow reveal">Reservations</div>
+        <h2 class="section-title reveal reveal-delay-1">BOOK<br>YOUR<br>TABLE</h2>
+        <p class="reserve-body reveal reveal-delay-2">
+          Tables go fast on Fridays and Saturdays. We recommend reserving at least 48 hours in advance. Walk-ins welcome subject to availability.
+        </p>
+        <div class="reserve-info reveal reveal-delay-3">
+          <div class="reserve-info-row">
+            <div class="reserve-info-icon">
+              <svg viewBox="0 0 16 16" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3">
+                <circle cx="8" cy="8" r="6"/>
+                <polyline points="8,4.5 8,8 10.5,10"/>
+              </svg>
+            </div>
+            <div class="reserve-info-text">
+              <div class="reserve-info-label">Hours</div>
+              <div class="reserve-info-value">Mon–Sun, 6:00 PM – 3:00 AM</div>
+            </div>
+          </div>
+          <div class="reserve-info-row">
+            <div class="reserve-info-icon">
+              <svg viewBox="0 0 16 16" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3">
+                <path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5c0-2.5-2-4.5-4.5-4.5z"/>
+                <circle cx="8" cy="6" r="1.5"/>
+              </svg>
+            </div>
+            <div class="reserve-info-text">
+              <div class="reserve-info-label">Location</div>
+              <div class="reserve-info-value">Knutsford Terrace, Tsim Sha Tsui<br>Kowloon, Hong Kong</div>
+            </div>
+          </div>
+          <div class="reserve-info-row">
+            <div class="reserve-info-icon">
+              <svg viewBox="0 0 16 16" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3">
+                <rect x="2" y="3" width="12" height="10" rx="1"/>
+                <polyline points="2,6 8,9.5 14,6"/>
+              </svg>
+            </div>
+            <div class="reserve-info-text">
+              <div class="reserve-info-label">Enquiries</div>
+              <div class="reserve-info-value">hello@mazebar.hk<br>@mazebar.hk on Instagram</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-1">
+        <form class="reserve-form" id="reservation-form" novalidate>
+          <div class="form-title">Make a reservation</div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="fname">First Name</label>
+              <input class="form-input" type="text" id="fname" name="fname" placeholder="Your name" autocomplete="given-name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="lname">Last Name</label>
+              <input class="form-input" type="text" id="lname" name="lname" placeholder="Family name" autocomplete="family-name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone</label>
+              <input class="form-input" type="tel" id="phone" name="phone" placeholder="+852 xxxx xxxx" autocomplete="tel">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="date">Date</label>
+              <input class="form-input" type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="time">Time</label>
+              <select class="form-select" id="time" name="time" required>
+                <option value="" disabled selected>Select time</option>
+                <option>6:00 PM</option>
+                <option>7:00 PM</option>
+                <option>8:00 PM</option>
+                <option>9:00 PM</option>
+                <option>10:00 PM</option>
+                <option>11:00 PM</option>
+                <option>12:00 AM</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="guests">Party Size</label>
+              <select class="form-select" id="guests" name="guests" required>
+                <option value="" disabled selected>Guests</option>
+                <option>1–2 guests</option>
+                <option>3–4 guests</option>
+                <option>5–6 guests</option>
+                <option>7–8 guests</option>
+                <option>9+ guests — group enquiry</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="occasion">Occasion</label>
+              <select class="form-select" id="occasion" name="occasion">
+                <option value="" disabled selected>Optional</option>
+                <option>Birthday</option>
+                <option>Anniversary</option>
+                <option>Corporate</option>
+                <option>Date night</option>
+                <option>Just drinks</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label class="form-label" for="notes">Special Requests</label>
+              <textarea class="form-textarea" id="notes" name="notes" placeholder="Dietary requirements, seating preferences, anything else…"></textarea>
+            </div>
+          </div>
+
+          <button class="form-submit" type="submit">Confirm Reservation</button>
+          <p class="form-note">We will confirm within 24 hours via email. No charge to reserve.</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ─── FOOTER ───────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="footer-logo" aria-label="Maze Bar HK">
+          <svg width="22" height="22" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+            <polygon points="14,2 24,7.5 24,20.5 14,26 4,20.5 4,7.5" stroke="#C9A84C" stroke-width="1.2" fill="none"/>
+            <polyline points="8,14 14,14 14,17.5 20,17.5" stroke="#C9A84C" stroke-width="1" fill="none" stroke-linecap="round"/>
+          </svg>
+          MAZE BAR HK
+        </a>
+        <p class="footer-tagline">A futuristic Aztec labyrinth on<br>Knutsford Terrace since 2019.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/mazebar.hk/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 16 16" fill="none" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="12" height="12" rx="3"/>
+              <circle cx="8" cy="8" r="3"/>
+              <circle cx="11.5" cy="4.5" r="0.6" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/mazebar.hk/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 16 16" fill="none" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 2H8.5A2.5 2.5 0 006 4.5V6H4v3h2v7h3V9h2l.5-3H9V4.5A.5.5 0 019.5 4H10z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Visit</div>
+        <p>
+          Knutsford Terrace<br>
+          Tsim Sha Tsui<br>
+          Kowloon, Hong Kong<br><br>
+          Mon–Sun<br>
+          6:00 PM – 3:00 AM
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Navigate</div>
+        <ul>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#atmosphere">The Bar</a></li>
+          <li><a href="#reserve">Reservations</a></li>
+          <li><a href="https://www.instagram.com/mazebar.hk/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="mailto:hello@mazebar.hk">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Contact</div>
+        <p>
+          hello@mazebar.hk<br><br>
+          Group bookings &amp; events:<br>
+          events@mazebar.hk<br><br>
+          @mazebar.hk
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Maze Bar Hong Kong. All rights reserved.</p>
+      <p>Zinc Group · Knutsford Terrace</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── SCRIPTS ──────────────────────────────────────────── -->
+<script>
+(function () {
+
+  /* Nav scroll state */
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  /* Scroll reveal */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(function (el) { observer.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('visible'); });
+  }
+
+  /* Hero text immediate reveal */
+  setTimeout(function () {
+    document.querySelectorAll('.hero .reveal').forEach(function (el) {
+      el.classList.add('visible');
+    });
+  }, 100);
+
+  /* Form: set min date to today */
+  var dateInput = document.getElementById('date');
+  if (dateInput) {
+    var today = new Date();
+    var yyyy = today.getFullYear();
+    var mm   = String(today.getMonth() + 1).padStart(2, '0');
+    var dd   = String(today.getDate()).padStart(2, '0');
+    dateInput.min = yyyy + '-' + mm + '-' + dd;
+  }
+
+  /* Form: simple submit feedback */
+  var form = document.getElementById('reservation-form');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('.form-submit');
+      btn.textContent = 'Reservation Sent — We\'ll confirm within 24hrs';
+      btn.style.background = '#1A4A3C';
+      btn.style.color = '#5DCAA5';
+      btn.disabled = true;
+    });
+  }
+
+})();
+</script>
+</body>
+</html>
