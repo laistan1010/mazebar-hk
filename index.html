@@ -859,6 +859,68 @@ section {
 }
 .review-google-badge svg { opacity: 0.5; }
 
+/* ─── LOCATION / DIRECTIONS ─────────────────────────────── */
+.location-section {
+  padding: 0 0 80px;
+}
+.location-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 32px;
+  border: var(--rule);
+  background: var(--obsidian);
+  padding: 36px 40px;
+  border-radius: 4px;
+}
+.location-pin {
+  width: 56px; height: 56px;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.location-pin svg { width: 26px; height: 26px; }
+.location-info-label {
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.location-info-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 0.04em;
+  color: var(--bone);
+  margin-bottom: 6px;
+}
+.location-info-address {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.directions-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--gold);
+  color: var(--void);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 16px 26px;
+  border-radius: 3px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+.directions-btn:hover { opacity: 0.85; }
+.directions-btn svg { width: 15px; height: 15px; }
+
 /* ─── FOOTER ────────────────────────────────────────────── */
 footer {
   border-top: var(--rule);
@@ -987,6 +1049,9 @@ footer {
   .atmosphere-grid { grid-template-columns: 1fr; gap: 48px; }
   .reserve-grid { grid-template-columns: 1fr; gap: 48px; }
   .reviews-grid { grid-template-columns: 1fr; }
+  .location-card { grid-template-columns: 1fr; text-align: center; padding: 28px 24px; }
+  .location-pin { margin: 0 auto; }
+  .directions-btn { width: 100%; justify-content: center; }
   .reserve-form { padding: 32px 24px; }
   .form-grid { grid-template-columns: 1fr; }
 
@@ -1439,12 +1504,6 @@ footer {
             <div class="reserve-info-text">
               <div class="reserve-info-label">Location</div>
               <div class="reserve-info-value">Knutsford Terrace, Tsim Sha Tsui<br>Kowloon, Hong Kong</div>
-              <a href="https://maps.app.goo.gl/a7EBnn3Dx7b68iAc7" target="_blank" rel="noopener" class="directions-link">
-                <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2 8l12-5.5-5.5 12-1.3-5.2L2 8z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
-                </svg>
-                Get Directions
-              </a>
             </div>
           </div>
           <div class="reserve-info-row">
@@ -1537,6 +1596,31 @@ footer {
   </div>
 </section>
 </main>
+
+<!-- ─── LOCATION / DIRECTIONS ────────────────────────────── -->
+<section class="location-section">
+  <div class="container">
+    <div class="location-card reveal">
+      <div class="location-pin" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="#C9A84C" stroke-width="1.6"/>
+          <circle cx="12" cy="9" r="2.5" stroke="#C9A84C" stroke-width="1.6"/>
+        </svg>
+      </div>
+      <div>
+        <div class="location-info-label">Find Us</div>
+        <div class="location-info-name">Maze Restaurant &amp; Bar</div>
+        <div class="location-info-address">Knutsford Terrace, Tsim Sha Tsui, Kowloon, Hong Kong</div>
+      </div>
+      <a href="https://maps.app.goo.gl/a7EBnn3Dx7b68iAc7" target="_blank" rel="noopener" class="directions-btn">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 11l18-8-8 18-2-8-8-2z" stroke="#0D0A07" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+        Get Directions
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- ─── REVIEWS ──────────────────────────────────────────── -->
 <section class="reviews-section">
