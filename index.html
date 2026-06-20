@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maze Bar HK — Find Your Way</title>
+<title>Maze Bar HK | Aztec Cocktail Bar, Knutsford Terrace Tsim Sha Tsui</title>
 <meta name="description" content="Maze Bar Hong Kong. A futuristic Aztec cocktail bar on Knutsford Terrace, Tsim Sha Tsui. Reserve your table now.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTAiIGZpbGw9IiMwRDBBMDciLz4KICA8cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iNTYiIGhlaWdodD0iNTYiIHJ4PSI3IiBmaWxsPSJub25lIiBzdHJva2U9IiNDOUE4NEMiIHN0cm9rZS13aWR0aD0iMi41Ii8+CiAgPHBvbHlnb24gcG9pbnRzPSIzMiwxNCA0NiwyMS41IDQ2LDM2LjUgMzIsNDQgMTgsMzYuNSAxOCwyMS41IiBzdHJva2U9IiNDOUE4NEMiIHN0cm9rZS13aWR0aD0iMS42IiBmaWxsPSJub25lIi8+CiAgPHBvbHlsaW5lIHBvaW50cz0iMjAsMjkgMzIsMjkgMzIsMzYgNDQsMzYiIHN0cm9rZT0iI0M5QTg0QyIgc3Ryb2tlLXdpZHRoPSIxLjMiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4=">
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTAiIGZpbGw9IiMwRDBBMDciLz4KICA8cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iNTYiIGhlaWdodD0iNTYiIHJ4PSI3IiBmaWxsPSJub25lIiBzdHJva2U9IiNDOUE4NEMiIHN0cm9rZS13aWR0aD0iMi41Ii8+CiAgPHBvbHlnb24gcG9pbnRzPSIzMiwxNCA0NiwyMS41IDQ2LDM2LjUgMzIsNDQgMTgsMzYuNSAxOCwyMS41IiBzdHJva2U9IiNDOUE4NEMiIHN0cm9rZS13aWR0aD0iMS42IiBmaWxsPSJub25lIi8+CiAgPHBvbHlsaW5lIHBvaW50cz0iMjAsMjkgMzIsMjkgMzIsMzYgNDQsMzYiIHN0cm9rZT0iI0M5QTg0QyIgc3Ryb2tlLXdpZHRoPSIxLjMiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4=">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;1,9..40,300&display=swap" rel="stylesheet">
@@ -13,10 +15,10 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  background: var(--void);
-  color: var(--bone);
+  background: #0D0A07;
+  color: #E8E0D0;
   font-family: 'DM Sans', sans-serif;
-  font-weight: 400; /* Increased from 300 for readability */
+  font-weight: 300;
   line-height: 1;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -24,16 +26,16 @@ body {
 
 /* ─── TOKENS ────────────────────────────────────────────── */
 :root {
-  --void:      #1C1611; /* Brighter dark background */
-  --obsidian:  #2C231A; /* Brighter card background */
-  --earth:     #3F3224; /* Brighter border/accent */
-  --gold:      #D4B862; /* Brighter, more legible gold */
-  --bone:      #F8F0E0; /* Brighter heading text */
-  --muted:     #D6C8B8; /* Brighter body text for readability */
-  --dim:       #A89888; /* Brighter dim text */
-  --campari:   #8A2F56;
-  --absinthe:  #205A4A;
-  --rule:      1px solid rgba(212,184,98,0.25); /* More visible rules */
+  --void:      #0D0A07;
+  --obsidian:  #1A1410;
+  --earth:     #2E2418;
+  --gold:      #C9A84C;
+  --bone:      #E8E0D0;
+  --muted:     #B0A090;
+  --dim:       #887868;
+  --campari:   #7D2B4E;
+  --absinthe:  #1A4A3C;
+  --rule:      1px solid rgba(201,168,76,0.18);
 }
 
 /* ─── NOISE TEXTURE (SVG-inline background) ─────────────── */
@@ -55,11 +57,11 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 24px 48px;
-  background: linear-gradient(to bottom, rgba(28,22,17,0.9) 0%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(13,10,7,0.9) 0%, transparent 100%);
   transition: background 0.4s;
 }
 nav.scrolled {
-  background: rgba(28,22,17,0.95);
+  background: rgba(13,10,7,0.95);
   border-bottom: var(--rule);
   padding: 16px 48px;
 }
@@ -85,8 +87,7 @@ nav.scrolled {
   list-style: none;
 }
 .nav-links a {
-  font-size: 11px; /* Slightly larger nav links */
-  font-weight: 400;
+  font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
@@ -95,11 +96,10 @@ nav.scrolled {
 }
 .nav-links a:hover { color: var(--gold); }
 .nav-cta {
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #110D0A !important;
+  color: var(--void) !important;
   background: var(--gold);
   padding: 10px 20px;
   border-radius: 3px;
@@ -107,6 +107,94 @@ nav.scrolled {
   transition: opacity 0.2s;
 }
 .nav-cta:hover { opacity: 0.88; }
+
+/* ─── MOBILE NAV ACTIONS (hidden on desktop) ──────────────── */
+.nav-mobile-actions {
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+.nav-cta-mobile {
+  padding: 9px 16px;
+  font-size: 9px;
+}
+.nav-hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid rgba(232,224,208,0.25);
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 0;
+  align-items: center;
+}
+.nav-hamburger span {
+  display: block;
+  width: 16px;
+  height: 1.5px;
+  background: var(--bone);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.nav-hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ─── MOBILE DROPDOWN MENU ─────────────────────────────────── */
+.mobile-menu {
+  position: fixed;
+  top: 64px;
+  left: 0; right: 0;
+  background: rgba(13,10,7,0.98);
+  border-bottom: var(--rule);
+  display: flex;
+  flex-direction: column;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  z-index: 99;
+}
+.mobile-menu.open { max-height: 280px; }
+.mobile-menu a {
+  padding: 18px 24px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+}
+.mobile-menu a:active { color: var(--gold); }
+.mobile-menu-cta { color: var(--gold) !important; font-weight: 500; }
+
+/* ─── STICKY BOTTOM CTA BAR (mobile only) ─────────────────── */
+.sticky-cta-bar {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 98;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  background: rgba(13,10,7,0.97);
+  border-top: var(--rule);
+  backdrop-filter: blur(6px);
+}
+.sticky-cta-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: var(--gold);
+  color: var(--void);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 15px;
+  border-radius: 3px;
+  text-decoration: none;
+}
 
 /* ─── HERO — CONCEPT C EDITORIAL SPLIT ─────────────────── */
 .hero {
@@ -128,7 +216,7 @@ nav.scrolled {
   inset: 0;
   background:
     linear-gradient(to right, transparent 65%, var(--void) 100%),
-    linear-gradient(to bottom, rgba(28,22,17,0.3) 0%, transparent 40%);
+    linear-gradient(to bottom, rgba(13,10,7,0.3) 0%, transparent 40%);
   z-index: 2;
 }
 /* Abstract cocktail / bar illustration standing in for photography */
@@ -148,8 +236,7 @@ nav.scrolled {
   gap: 12px;
 }
 .hero-image-label span {
-  font-size: 10px;
-  font-weight: 400;
+  font-size: 9px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
@@ -158,7 +245,7 @@ nav.scrolled {
   width: 32px;
   height: 1px;
   background: var(--gold);
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 /* RIGHT — editorial text column */
@@ -182,8 +269,7 @@ nav.scrolled {
   background: var(--gold);
 }
 .hero-eyebrow span {
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 9px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--gold);
@@ -199,13 +285,13 @@ nav.scrolled {
 .hero-headline em {
   font-style: normal;
   color: transparent;
-  -webkit-text-stroke: 1.5px rgba(212,184,98,0.7);
+  -webkit-text-stroke: 1px rgba(201,168,76,0.5);
 }
 .hero-subhead {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(18px, 2vw, 26px);
   font-style: italic;
-  font-weight: 400;
+  font-weight: 300;
   color: var(--gold);
   line-height: 1.4;
   letter-spacing: 0.03em;
@@ -213,12 +299,12 @@ nav.scrolled {
   max-width: 380px;
 }
 .hero-body {
-  font-size: 16px; /* Increased font size */
-  font-weight: 400; /* Increased font weight */
+  font-size: 14px;
+  font-weight: 300;
   color: var(--muted);
   line-height: 1.7;
   letter-spacing: 0.02em;
-  max-width: 380px;
+  max-width: 360px;
   margin-bottom: 44px;
 }
 .hero-ctas {
@@ -232,9 +318,8 @@ nav.scrolled {
   display: block;
   text-align: center;
   background: var(--gold);
-  color: #110D0A;
-  font-size: 12px;
-  font-weight: 600;
+  color: var(--void);
+  font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   padding: 18px 32px;
@@ -248,13 +333,12 @@ nav.scrolled {
   text-align: center;
   background: transparent;
   color: var(--bone);
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   padding: 17px 32px;
   border-radius: 3px;
-  border: 1px solid rgba(248,240,224,0.3);
+  border: 1px solid rgba(232,224,208,0.2);
   text-decoration: none;
   transition: border-color 0.2s, color 0.2s;
 }
@@ -267,8 +351,7 @@ nav.scrolled {
 }
 .hero-meta-item {}
 .hero-meta-label {
-  font-size: 9px;
-  font-weight: 600;
+  font-size: 8px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--dim);
@@ -276,8 +359,8 @@ nav.scrolled {
 }
 .hero-meta-value {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 400;
   color: var(--muted);
   letter-spacing: 0.04em;
 }
@@ -308,8 +391,7 @@ section {
   width: max-content;
 }
 .marquee-track span {
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 9px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--dim);
@@ -336,8 +418,7 @@ section {
   margin-bottom: 64px;
 }
 .section-eyebrow {
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 9px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--gold);
@@ -351,8 +432,7 @@ section {
   line-height: 0.92;
 }
 .section-link {
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
@@ -397,13 +477,13 @@ section {
   transform-origin: left;
   transition: transform 0.4s;
 }
-.cocktail-card:hover { background: #352B20; }
+.cocktail-card:hover { background: #1E1810; }
 .cocktail-card:hover::before { transform: scaleX(1); }
 .cocktail-number {
   font-family: 'Cormorant Garamond', serif;
   font-size: 64px;
-  font-weight: 400;
-  color: rgba(212,184,98,0.18);
+  font-weight: 300;
+  color: rgba(201,168,76,0.12);
   line-height: 1;
   margin-bottom: 20px;
   letter-spacing: -0.02em;
@@ -417,8 +497,7 @@ section {
   line-height: 1;
 }
 .cocktail-ingredients {
-  font-size: 13px; /* Increased font size */
-  font-weight: 400;
+  font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--dim);
@@ -430,21 +509,20 @@ section {
   align-items: center;
   justify-content: space-between;
   padding-top: 24px;
-  border-top: 1px solid rgba(63,50,36,0.8);
+  border-top: 1px solid rgba(46,36,24,0.8);
 }
 .cocktail-price {
   font-family: 'Cormorant Garamond', serif;
   font-size: 22px;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--gold);
   letter-spacing: 0.04em;
 }
 .cocktail-tag {
-  font-size: 9px;
-  font-weight: 600;
+  font-size: 8px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--bone);
+  color: var(--dim);
   background: var(--earth);
   padding: 4px 10px;
   border-radius: 2px;
@@ -481,17 +559,16 @@ section {
 }
 .atmosphere-quote blockquote {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 24px;
+  font-size: 22px;
   font-style: italic;
-  font-weight: 400;
+  font-weight: 300;
   color: var(--bone);
   line-height: 1.4;
   letter-spacing: 0.02em;
   margin-bottom: 16px;
 }
 .atmosphere-quote cite {
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 9px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
@@ -508,13 +585,13 @@ section {
   margin-bottom: 32px;
 }
 .atmosphere-body {
-  font-size: 16px; /* Increased font size */
-  font-weight: 400; /* Increased font weight */
+  font-size: 15px;
+  font-weight: 300;
   color: var(--muted);
   line-height: 1.75;
   letter-spacing: 0.02em;
   margin-bottom: 40px;
-  max-width: 440px;
+  max-width: 420px;
 }
 .atmosphere-stats {
   display: grid;
@@ -529,14 +606,13 @@ section {
 .stat-number {
   font-family: 'Cormorant Garamond', serif;
   font-size: 36px;
-  font-weight: 400;
+  font-weight: 300;
   color: var(--gold);
   letter-spacing: 0.02em;
   margin-bottom: 4px;
 }
 .stat-label {
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 9px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--dim);
@@ -557,12 +633,12 @@ section {
   margin-bottom: 24px;
 }
 .reserve-body {
-  font-size: 16px; /* Increased font size */
-  font-weight: 400; /* Increased font weight */
+  font-size: 14px;
+  font-weight: 300;
   color: var(--muted);
   line-height: 1.75;
   margin-bottom: 36px;
-  max-width: 400px;
+  max-width: 380px;
 }
 .reserve-info {
   display: flex;
@@ -588,19 +664,34 @@ section {
 .reserve-info-icon svg { width: 14px; height: 14px; stroke: var(--gold); }
 .reserve-info-text {}
 .reserve-info-label {
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 9px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--dim);
   margin-bottom: 3px;
 }
 .reserve-info-value {
-  font-size: 15px;
+  font-size: 14px;
   color: var(--muted);
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.5;
 }
+.directions-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201,168,76,0.35);
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+.directions-link svg { width: 11px; height: 11px; }
+.directions-link:hover { opacity: 0.75; }
 
 /* ─── FORM ──────────────────────────────────────────────── */
 .reserve-form {
@@ -611,9 +702,9 @@ section {
 }
 .form-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 32px;
+  font-size: 28px;
   font-style: italic;
-  font-weight: 400;
+  font-weight: 300;
   color: var(--bone);
   margin-bottom: 32px;
   letter-spacing: 0.03em;
@@ -631,8 +722,7 @@ section {
 }
 .form-group.full { grid-column: 1 / -1; }
 .form-label {
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 9px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--dim);
@@ -645,8 +735,8 @@ section {
   border-radius: 3px;
   color: var(--bone);
   font-family: 'DM Sans', sans-serif;
-  font-size: 16px; /* Prevents iOS auto-zoom & improves reading */
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 300;
   padding: 14px 16px;
   outline: none;
   transition: border-color 0.2s;
@@ -659,7 +749,7 @@ section {
 .form-select:focus,
 .form-textarea:focus { border-color: var(--gold); }
 .form-select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6' fill='none' stroke='%23D4B862' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6' fill='none' stroke='%234A4038' stroke-width='1.5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 16px center;
   padding-right: 40px;
@@ -670,12 +760,11 @@ section {
 .form-submit {
   width: 100%;
   background: var(--gold);
-  color: #110D0A;
+  color: var(--void);
   border: none;
   border-radius: 3px;
   font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   padding: 18px 32px;
@@ -685,7 +774,7 @@ section {
 }
 .form-submit:hover { opacity: 0.88; transform: translateY(-1px); }
 .form-note {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--dim);
   text-align: center;
   margin-top: 12px;
@@ -719,13 +808,13 @@ section {
 }
 .review-stars span {
   color: var(--gold);
-  font-size: 14px;
+  font-size: 12px;
 }
 .review-quote {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
+  font-size: 17px;
   font-style: italic;
-  font-weight: 400; /* Increased font weight */
+  font-weight: 300;
   color: var(--bone);
   line-height: 1.6;
   letter-spacing: 0.02em;
@@ -744,17 +833,16 @@ section {
   flex-direction: column;
   gap: 4px;
   padding-top: 20px;
-  border-top: 1px solid rgba(212,184,98,0.18);
+  border-top: 1px solid rgba(201,168,76,0.12);
 }
 .review-name {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--bone);
 }
 .review-meta {
-  font-size: 10px;
+  font-size: 9px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -763,14 +851,13 @@ section {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 9px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
   margin-top: 8px;
 }
-.review-google-badge svg { opacity: 0.7; }
+.review-google-badge svg { opacity: 0.5; }
 
 /* ─── FOOTER ────────────────────────────────────────────── */
 footer {
@@ -788,7 +875,7 @@ footer {
 .footer-brand {}
 .footer-logo {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 22px;
+  font-size: 20px;
   letter-spacing: 0.1em;
   color: var(--bone);
   display: flex;
@@ -799,7 +886,7 @@ footer {
 }
 .footer-tagline {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 16px;
+  font-size: 15px;
   font-style: italic;
   color: var(--muted);
   margin-bottom: 24px;
@@ -825,8 +912,7 @@ footer {
 .footer-social a svg { width: 14px; height: 14px; stroke: var(--muted); transition: stroke 0.2s; }
 .footer-social a:hover svg { stroke: var(--gold); }
 .footer-col-title {
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 9px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
@@ -835,17 +921,17 @@ footer {
 .footer-col ul { list-style: none; }
 .footer-col ul li { margin-bottom: 10px; }
 .footer-col ul li a {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--muted);
   text-decoration: none;
-  font-weight: 400; /* Increased font weight */
+  font-weight: 300;
   transition: color 0.2s;
 }
 .footer-col ul li a:hover { color: var(--bone); }
 .footer-col p {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--muted);
-  font-weight: 400; /* Increased font weight */
+  font-weight: 300;
   line-height: 1.7;
 }
 .footer-bottom {
@@ -856,7 +942,7 @@ footer {
   border-top: var(--rule);
 }
 .footer-bottom p {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--dim);
   letter-spacing: 0.08em;
 }
@@ -885,6 +971,9 @@ footer {
   nav { padding: 20px 24px; }
   nav.scrolled { padding: 14px 24px; }
   .nav-links { display: none; }
+  .nav-mobile-actions { display: flex; }
+  .sticky-cta-bar { display: block; }
+  body { padding-bottom: 70px; }
 
   .hero { grid-template-columns: 1fr; min-height: auto; }
   .hero-image { min-height: 55vh; }
@@ -914,6 +1003,41 @@ footer {
   .atmosphere-stats { grid-template-columns: 1fr 1fr; }
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BarOrPub",
+  "name": "Maze Restaurant & Bar",
+  "url": "https://maze-bar-hk.vercel.app/",
+  "servesCuisine": "Cocktail Bar",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Knutsford Terrace",
+    "addressLocality": "Tsim Sha Tsui",
+    "addressRegion": "Kowloon",
+    "addressCountry": "HK"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 22.3013174,
+    "longitude": 114.1737073
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "18:00",
+      "closes": "03:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/mazebar.hk/",
+    "https://www.facebook.com/mazebar.hk/",
+    "https://maps.app.goo.gl/a7EBnn3Dx7b68iAc7"
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -921,9 +1045,9 @@ footer {
 <nav id="nav">
   <a href="#" class="nav-logo" aria-label="Maze Bar HK home">
     <svg class="nav-logo-mark" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <polygon points="14,2 24,7.5 24,20.5 14,26 4,20.5 4,7.5" stroke="#D4B862" stroke-width="1.2" fill="none"/>
-      <polygon points="14,7 20,10.5 20,17.5 14,21 8,17.5 8,10.5" stroke="#D4B862" stroke-width="0.5" fill="none" opacity="0.45"/>
-      <polyline points="8,14 14,14 14,17.5 20,17.5" stroke="#D4B862" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <polygon points="14,2 24,7.5 24,20.5 14,26 4,20.5 4,7.5" stroke="#C9A84C" stroke-width="1.2" fill="none"/>
+      <polygon points="14,7 20,10.5 20,17.5 14,21 8,17.5 8,10.5" stroke="#C9A84C" stroke-width="0.5" fill="none" opacity="0.45"/>
+      <polyline points="8,14 14,14 14,17.5 20,17.5" stroke="#C9A84C" stroke-width="1" fill="none" stroke-linecap="round"/>
     </svg>
     MAZE BAR
   </a>
@@ -932,7 +1056,27 @@ footer {
     <li><a href="#atmosphere">The Bar</a></li>
     <li><a href="#reserve" class="nav-cta">Reserve a Table</a></li>
   </ul>
+
+  <!-- Mobile-only: Reserve always visible + hamburger toggle -->
+  <div class="nav-mobile-actions">
+    <a href="#reserve" class="nav-cta nav-cta-mobile">Reserve</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+
+<!-- Mobile dropdown menu -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <a href="#menu">Menu</a>
+  <a href="#atmosphere">The Bar</a>
+  <a href="#reserve" class="mobile-menu-cta">Reserve a Table</a>
+</div>
+
+<!-- Sticky bottom CTA bar — extra conversion safety net on mobile -->
+<div class="sticky-cta-bar" id="stickyCtaBar">
+  <a href="#reserve" class="sticky-cta-btn">Reserve a Table</a>
+</div>
 
 <!-- ─── HERO ─────────────────────────────────────────────── -->
 <main>
@@ -941,56 +1085,56 @@ footer {
   <!-- LEFT: photo/art column -->
   <div class="hero-image" aria-hidden="true">
     <svg class="hero-photo-art" viewBox="0 0 660 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <!-- Deep background adjusted to new void color -->
-      <rect width="660" height="900" fill="#1C1611"/>
+      <!-- Deep background -->
+      <rect width="660" height="900" fill="#0D0A07"/>
       <!-- Warm amber atmospheric glow from practical light source -->
-      <ellipse cx="330" cy="500" rx="280" ry="320" fill="#D4B862" opacity="0.04"/>
-      <ellipse cx="200" cy="360" rx="150" ry="180" fill="#D4B862" opacity="0.06"/>
+      <ellipse cx="330" cy="500" rx="280" ry="320" fill="#C9A84C" opacity="0.04"/>
+      <ellipse cx="200" cy="360" rx="150" ry="180" fill="#C9A84C" opacity="0.06"/>
       <!-- Stone texture suggestion — vertical lines -->
-      <line x1="80"  y1="0" x2="80"  y2="900" stroke="#2C231A" stroke-width="0.4"/>
-      <line x1="160" y1="0" x2="160" y2="900" stroke="#2C231A" stroke-width="0.4"/>
-      <line x1="240" y1="0" x2="240" y2="900" stroke="#2C231A" stroke-width="0.4"/>
-      <line x1="320" y1="0" x2="320" y2="900" stroke="#2C231A" stroke-width="0.4"/>
-      <line x1="400" y1="0" x2="400" y2="900" stroke="#2C231A" stroke-width="0.4"/>
-      <line x1="480" y1="0" x2="480" y2="900" stroke="#2C231A" stroke-width="0.4"/>
-      <line x1="560" y1="0" x2="560" y2="900" stroke="#2C231A" stroke-width="0.4"/>
+      <line x1="80"  y1="0" x2="80"  y2="900" stroke="#1A1410" stroke-width="0.4"/>
+      <line x1="160" y1="0" x2="160" y2="900" stroke="#1A1410" stroke-width="0.4"/>
+      <line x1="240" y1="0" x2="240" y2="900" stroke="#1A1410" stroke-width="0.4"/>
+      <line x1="320" y1="0" x2="320" y2="900" stroke="#1A1410" stroke-width="0.4"/>
+      <line x1="400" y1="0" x2="400" y2="900" stroke="#1A1410" stroke-width="0.4"/>
+      <line x1="480" y1="0" x2="480" y2="900" stroke="#1A1410" stroke-width="0.4"/>
+      <line x1="560" y1="0" x2="560" y2="900" stroke="#1A1410" stroke-width="0.4"/>
       <!-- Aztec labyrinth geometry — large -->
-      <polygon points="330,80 510,180 510,380 330,480 150,380 150,180" fill="none" stroke="#D4B862" stroke-width="0.7" opacity="0.22"/>
-      <polygon points="330,120 480,204 480,356 330,440 180,356 180,204" fill="none" stroke="#D4B862" stroke-width="0.4" opacity="0.12"/>
+      <polygon points="330,80 510,180 510,380 330,480 150,380 150,180" fill="none" stroke="#C9A84C" stroke-width="0.7" opacity="0.22"/>
+      <polygon points="330,120 480,204 480,356 330,440 180,356 180,204" fill="none" stroke="#C9A84C" stroke-width="0.4" opacity="0.12"/>
       <!-- Maze path running through hex -->
-      <polyline points="180,280 250,280 250,204 330,204" stroke="#D4B862" stroke-width="0.7" fill="none" opacity="0.35" stroke-linecap="round"/>
-      <polyline points="330,356 330,300 410,300 410,356 480,356" stroke="#D4B862" stroke-width="0.7" fill="none" opacity="0.25" stroke-linecap="round"/>
+      <polyline points="180,280 250,280 250,204 330,204" stroke="#C9A84C" stroke-width="0.7" fill="none" opacity="0.35" stroke-linecap="round"/>
+      <polyline points="330,356 330,300 410,300 410,356 480,356" stroke="#C9A84C" stroke-width="0.7" fill="none" opacity="0.25" stroke-linecap="round"/>
       <!-- Cocktail glass — centred, tall stem -->
-      <polygon points="330,180 390,340 270,340" fill="none" stroke="#D4B862" stroke-width="1" opacity="0.55"/>
-      <line x1="330" y1="340" x2="330" y2="420" stroke="#D4B862" stroke-width="1" opacity="0.5"/>
-      <line x1="290" y1="420" x2="370" y2="420" stroke="#D4B862" stroke-width="1" opacity="0.45"/>
+      <polygon points="330,180 390,340 270,340" fill="none" stroke="#C9A84C" stroke-width="1" opacity="0.55"/>
+      <line x1="330" y1="340" x2="330" y2="420" stroke="#C9A84C" stroke-width="1" opacity="0.5"/>
+      <line x1="290" y1="420" x2="370" y2="420" stroke="#C9A84C" stroke-width="1" opacity="0.45"/>
       <!-- Liquid level in glass — amber -->
-      <polygon points="330,250 381,330 279,330" fill="#D4B862" opacity="0.08"/>
-      <line x1="285" y1="300" x2="375" y2="300" stroke="#D4B862" stroke-width="0.5" opacity="0.35"/>
+      <polygon points="330,250 381,330 279,330" fill="#C9A84C" opacity="0.08"/>
+      <line x1="285" y1="300" x2="375" y2="300" stroke="#C9A84C" stroke-width="0.5" opacity="0.35"/>
       <!-- Ice cube suggestion -->
-      <rect x="316" y="260" width="28" height="28" fill="none" stroke="#D4B862" stroke-width="0.6" opacity="0.3" rx="1"/>
+      <rect x="316" y="260" width="28" height="28" fill="none" stroke="#C9A84C" stroke-width="0.6" opacity="0.3" rx="1"/>
       <!-- Rim garnish dot -->
-      <circle cx="388" cy="342" r="4" fill="#D4B862" opacity="0.4"/>
+      <circle cx="388" cy="342" r="4" fill="#C9A84C" opacity="0.4"/>
       <!-- Condensation dots on glass -->
-      <circle cx="300" cy="290" r="1.2" fill="#D4B862" opacity="0.2"/>
-      <circle cx="358" cy="310" r="0.8" fill="#D4B862" opacity="0.15"/>
-      <circle cx="280" cy="320" r="1" fill="#D4B862" opacity="0.18"/>
+      <circle cx="300" cy="290" r="1.2" fill="#C9A84C" opacity="0.2"/>
+      <circle cx="358" cy="310" r="0.8" fill="#C9A84C" opacity="0.15"/>
+      <circle cx="280" cy="320" r="1" fill="#C9A84C" opacity="0.18"/>
       <!-- Bottom of frame: bar surface suggestion -->
-      <rect x="0" y="600" width="660" height="300" fill="#1C1611" opacity="0.6"/>
-      <rect x="0" y="600" width="660" height="1" fill="#3F3224" opacity="0.8"/>
+      <rect x="0" y="600" width="660" height="300" fill="#0D0A07" opacity="0.6"/>
+      <rect x="0" y="600" width="660" height="1" fill="#2E2418" opacity="0.8"/>
       <!-- bar surface reflections -->
-      <ellipse cx="330" cy="640" rx="180" ry="12" fill="#D4B862" opacity="0.03"/>
+      <ellipse cx="330" cy="640" rx="180" ry="12" fill="#C9A84C" opacity="0.03"/>
       <!-- Small maze marks — lower portion decorative -->
-      <rect x="60"  y="680" width="40" height="40" fill="none" stroke="#3F3224" stroke-width="0.5"/>
-      <rect x="560" y="700" width="40" height="40" fill="none" stroke="#3F3224" stroke-width="0.5"/>
-      <line x1="60"  y1="700" x2="80"  y2="700" stroke="#3F3224" stroke-width="0.5"/>
-      <line x1="580" y1="720" x2="580" y2="740" stroke="#3F3224" stroke-width="0.5"/>
+      <rect x="60"  y="680" width="40" height="40" fill="none" stroke="#2E2418" stroke-width="0.5"/>
+      <rect x="560" y="700" width="40" height="40" fill="none" stroke="#2E2418" stroke-width="0.5"/>
+      <line x1="60"  y1="700" x2="80"  y2="700" stroke="#2E2418" stroke-width="0.5"/>
+      <line x1="580" y1="720" x2="580" y2="740" stroke="#2E2418" stroke-width="0.5"/>
       <!-- Right edge fade to void for editorial split -->
       <rect x="420" y="0" width="240" height="900" fill="url(#fadeRight)"/>
       <defs>
         <linearGradient id="fadeRight" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="#1C1611" stop-opacity="0"/>
-          <stop offset="100%" stop-color="#1C1611" stop-opacity="1"/>
+          <stop offset="0%" stop-color="#0D0A07" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#0D0A07" stop-opacity="1"/>
         </linearGradient>
       </defs>
     </svg>
@@ -1180,47 +1324,47 @@ footer {
 
       <div class="atmosphere-visual reveal" aria-label="Maze Bar interior — Aztec geometry, amber light">
         <svg class="atmosphere-visual-inner" viewBox="0 0 500 625" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="500" height="625" fill="#1C1611"/>
+          <rect width="500" height="625" fill="#0D0A07"/>
           <!-- Ambient warm light source — upper left -->
-          <ellipse cx="140" cy="160" rx="200" ry="180" fill="#D4B862" opacity="0.07"/>
+          <ellipse cx="140" cy="160" rx="200" ry="180" fill="#C9A84C" opacity="0.07"/>
           <!-- Aztec wall pattern  -->
-          <rect x="20"  y="20"  width="460" height="585" fill="none" stroke="#2C231A" stroke-width="1"/>
-          <rect x="40"  y="40"  width="420" height="545" fill="none" stroke="#3F3224" stroke-width="0.5"/>
+          <rect x="20"  y="20"  width="460" height="585" fill="none" stroke="#1A1410" stroke-width="1"/>
+          <rect x="40"  y="40"  width="420" height="545" fill="none" stroke="#2E2418" stroke-width="0.5"/>
           <!-- Geometric maze grid -->
-          <line x1="40"  y1="120" x2="460" y2="120" stroke="#2C231A" stroke-width="0.5"/>
-          <line x1="40"  y1="220" x2="460" y2="220" stroke="#2C231A" stroke-width="0.5"/>
-          <line x1="160" y1="40"  x2="160" y2="585" stroke="#2C231A" stroke-width="0.5"/>
-          <line x1="340" y1="40"  x2="340" y2="585" stroke="#2C231A" stroke-width="0.5"/>
+          <line x1="40"  y1="120" x2="460" y2="120" stroke="#1A1410" stroke-width="0.5"/>
+          <line x1="40"  y1="220" x2="460" y2="220" stroke="#1A1410" stroke-width="0.5"/>
+          <line x1="160" y1="40"  x2="160" y2="585" stroke="#1A1410" stroke-width="0.5"/>
+          <line x1="340" y1="40"  x2="340" y2="585" stroke="#1A1410" stroke-width="0.5"/>
           <!-- Large central Aztec hexagon frame -->
-          <polygon points="250,60 400,143 400,383 250,466 100,383 100,143" fill="none" stroke="#D4B862" stroke-width="1" opacity="0.3"/>
-          <polygon points="250,90 374,162 374,362 250,434 126,362 126,162" fill="none" stroke="#D4B862" stroke-width="0.5" opacity="0.15"/>
+          <polygon points="250,60 400,143 400,383 250,466 100,383 100,143" fill="none" stroke="#C9A84C" stroke-width="1" opacity="0.3"/>
+          <polygon points="250,90 374,162 374,362 250,434 126,362 126,162" fill="none" stroke="#C9A84C" stroke-width="0.5" opacity="0.15"/>
           <!-- Interior bar counter — perspective lines -->
-          <polygon points="60,580 440,580 400,360 100,360" fill="#2C231A" stroke="#3F3224" stroke-width="0.5"/>
+          <polygon points="60,580 440,580 400,360 100,360" fill="#1A1410" stroke="#2E2418" stroke-width="0.5"/>
           <!-- Bar top surface line -->
-          <line x1="100" y1="360" x2="400" y2="360" stroke="#D4B862" stroke-width="0.8" opacity="0.6"/>
+          <line x1="100" y1="360" x2="400" y2="360" stroke="#C9A84C" stroke-width="0.8" opacity="0.6"/>
           <!-- Bottles on bar (silhouettes) -->
-          <rect x="150" y="290" width="12" height="70" fill="#D4B862" opacity="0.12" rx="2"/>
-          <rect x="170" y="300" width="10" height="60" fill="#D4B862" opacity="0.1" rx="2"/>
-          <rect x="188" y="285" width="14" height="75" fill="#D4B862" opacity="0.15" rx="2"/>
-          <rect x="320" y="295" width="12" height="65" fill="#D4B862" opacity="0.12" rx="2"/>
-          <rect x="336" y="288" width="10" height="72" fill="#D4B862" opacity="0.1" rx="2"/>
+          <rect x="150" y="290" width="12" height="70" fill="#C9A84C" opacity="0.12" rx="2"/>
+          <rect x="170" y="300" width="10" height="60" fill="#C9A84C" opacity="0.1" rx="2"/>
+          <rect x="188" y="285" width="14" height="75" fill="#C9A84C" opacity="0.15" rx="2"/>
+          <rect x="320" y="295" width="12" height="65" fill="#C9A84C" opacity="0.12" rx="2"/>
+          <rect x="336" y="288" width="10" height="72" fill="#C9A84C" opacity="0.1" rx="2"/>
           <!-- Candle practical lights -->
-          <ellipse cx="220" cy="360" rx="6" ry="3" fill="#D4B862" opacity="0.3"/>
-          <ellipse cx="280" cy="360" rx="6" ry="3" fill="#D4B862" opacity="0.3"/>
-          <polygon points="220,350 222,360 218,360" fill="#D4B862" opacity="0.5"/>
-          <polygon points="280,350 282,360 278,360" fill="#D4B862" opacity="0.5"/>
+          <ellipse cx="220" cy="360" rx="6" ry="3" fill="#C9A84C" opacity="0.3"/>
+          <ellipse cx="280" cy="360" rx="6" ry="3" fill="#C9A84C" opacity="0.3"/>
+          <polygon points="220,350 222,360 218,360" fill="#C9A84C" opacity="0.5"/>
+          <polygon points="280,350 282,360 278,360" fill="#C9A84C" opacity="0.5"/>
           <!-- Ceiling maze pattern -->
-          <line x1="40"  y1="40"  x2="460" y2="40"  stroke="#3F3224" stroke-width="0.3"/>
-          <line x1="100" y1="40"  x2="100" y2="120" stroke="#3F3224" stroke-width="0.3"/>
-          <line x1="400" y1="40"  x2="400" y2="120" stroke="#3F3224" stroke-width="0.3"/>
-          <line x1="200" y1="40"  x2="200" y2="80"  stroke="#3F3224" stroke-width="0.3"/>
-          <line x1="300" y1="40"  x2="300" y2="80"  stroke="#3F3224" stroke-width="0.3"/>
+          <line x1="40"  y1="40"  x2="460" y2="40"  stroke="#2E2418" stroke-width="0.3"/>
+          <line x1="100" y1="40"  x2="100" y2="120" stroke="#2E2418" stroke-width="0.3"/>
+          <line x1="400" y1="40"  x2="400" y2="120" stroke="#2E2418" stroke-width="0.3"/>
+          <line x1="200" y1="40"  x2="200" y2="80"  stroke="#2E2418" stroke-width="0.3"/>
+          <line x1="300" y1="40"  x2="300" y2="80"  stroke="#2E2418" stroke-width="0.3"/>
           <!-- Atmospheric overlay bottom -->
           <rect x="0" y="460" width="500" height="165" fill="url(#atmFade)"/>
           <defs>
             <linearGradient id="atmFade" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#1C1611" stop-opacity="0"/>
-              <stop offset="100%" stop-color="#1C1611" stop-opacity="0.85"/>
+              <stop offset="0%" stop-color="#0D0A07" stop-opacity="0"/>
+              <stop offset="100%" stop-color="#0D0A07" stop-opacity="0.85"/>
             </linearGradient>
           </defs>
         </svg>
@@ -1295,6 +1439,12 @@ footer {
             <div class="reserve-info-text">
               <div class="reserve-info-label">Location</div>
               <div class="reserve-info-value">Knutsford Terrace, Tsim Sha Tsui<br>Kowloon, Hong Kong</div>
+              <a href="https://maps.app.goo.gl/a7EBnn3Dx7b68iAc7" target="_blank" rel="noopener" class="directions-link">
+                <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 8l12-5.5-5.5 12-1.3-5.2L2 8z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+                </svg>
+                Get Directions
+              </a>
             </div>
           </div>
           <div class="reserve-info-row">
@@ -1486,8 +1636,8 @@ footer {
       <div class="footer-brand">
         <a href="#" class="footer-logo" aria-label="Maze Bar HK">
           <svg width="22" height="22" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-            <polygon points="14,2 24,7.5 24,20.5 14,26 4,20.5 4,7.5" stroke="#D4B862" stroke-width="1.2" fill="none"/>
-            <polyline points="8,14 14,14 14,17.5 20,17.5" stroke="#D4B862" stroke-width="1" fill="none" stroke-linecap="round"/>
+            <polygon points="14,2 24,7.5 24,20.5 14,26 4,20.5 4,7.5" stroke="#C9A84C" stroke-width="1.2" fill="none"/>
+            <polyline points="8,14 14,14 14,17.5 20,17.5" stroke="#C9A84C" stroke-width="1" fill="none" stroke-linecap="round"/>
           </svg>
           MAZE BAR HK
         </a>
@@ -1602,6 +1752,36 @@ footer {
       btn.style.color = '#5DCAA5';
       btn.disabled = true;
     });
+  }
+
+  /* Hamburger menu toggle */
+  var hamburger = document.getElementById('navHamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function () {
+      var isOpen = mobileMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      mobileMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+    });
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      });
+    });
+  }
+
+  /* Hide sticky bottom CTA once the Reserve section is on screen */
+  var reserveSection = document.getElementById('reserve');
+  var stickyBar = document.getElementById('stickyCtaBar');
+  if (reserveSection && stickyBar && 'IntersectionObserver' in window) {
+    var ctaObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        stickyBar.style.display = e.isIntersecting ? 'none' : '';
+      });
+    }, { threshold: 0.15 });
+    ctaObs.observe(reserveSection);
   }
 
 })();
